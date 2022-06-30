@@ -65,7 +65,7 @@ client.on("messageCreate", async (message) => {
         "Why was 6 afraid of 7? Because 7,8,9.",
         "Why did the computer get sick? It caught a virus!",
       ];
-      message.channel.send(`${jokes[Math.round(Math.random() * 5)]}`);
+      message.channel.send(`${jokes[Math.round(Math.random() * 4)]}`);
     }
   }
 });
