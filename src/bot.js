@@ -7,6 +7,7 @@ const client = new Client({
     Intents.FLAGS.GUILDS,
     Intents.FLAGS.GUILD_MESSAGES,
     Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
+    Intents.FLAGS.GUILD_MEMBERS,
   ],
 });
 const webhookClient = new WebhookClient({
@@ -54,10 +55,17 @@ client.on("messageCreate", async (message) => {
         );
       }
     } else if (CMD_NAME === "announce") {
-      console.log(args);
       const msg = args.join(" ");
-      console.log(msg);
       webhookClient.send(msg);
+    } else if (CMD_NAME === "joke") {
+      const jokes = [
+        "What do kids play when their mom is using the phone? Bored games.",
+        "What’s the smartest insect? A spelling bee!",
+        "How does the ocean say hi? It waves!",
+        "Why was 6 afraid of 7? Because 7,8,9.",
+        "Why did the computer get sick? It caught a virus!",
+      ];
+      message.channel.send(`${jokes[Math.round(Math.random() * 5)]}`);
     }
   }
 });
@@ -90,6 +98,12 @@ client.on("messageReactionRemove", (reaction, user) => {
         break;
     }
   }
+});
+
+client.on("guildMemberAdd", (member) => {
+  member.client.channels
+    .fetch("991838662872547398")
+    .then((channel) => channel.send(`Welcome ${member.user.username}!`));
 });
 
 client.login(process.env.DISCORDJS_BOT_TOKEN);
