@@ -94,7 +94,7 @@ client.on("messageReactionRemove", (reaction, user) => {
         member.roles.remove("991390324779925544");
         break;
       case "😎":
-        member.roles.remove("991390410612154408");
+        member.roles.remove("99139041061215440git8");
         break;
     }
   }
